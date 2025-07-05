@@ -15,15 +15,22 @@ class GameSprite(sprite.Sprite):
 
 
 class Player(GameSprite):
-    def update(self):
+    def update_l(self):
         key_pressed = key.get_pressed()
-        if key_pressed[K_d] and self.rect.x < 610:
-            self.rect.x += self.speed
-        if key_pressed[K_a] and self.rect.x > 0:
-            self.rect.x -= self.speed
-    def fire(self):
-        bullet = Bullet('pea.png',self.rect.centerx,self.rect.top,-15,15,20)
-        bullets.add(bullet)
+        if key_pressed[K_s] and self.rect.y < 450:
+            self.rect.y += self.speed
+        if key_pressed[K_w] and self.rect.y > 0:
+            self.rect.y -= self.speed
+    def update_r(self):
+        key_pressed = key.get_pressed()
+        if key_pressed[K_DOWN] and self.rect.y < 450:
+            self.rect.y += self.speed
+        if key_pressed[K_UP] and self.rect.y > 0:
+            self.rect.y -= self.speed
+
+left_pl = Player('dog.png',0,225,5,60,50)
+right_pl = Player('dog.png',640,225,5,60,50)
+
 
 
 
@@ -59,6 +66,10 @@ while game:
                 
     if finish != True:
         window.blit(background,(0,0))
+        left_pl.reset()
+        right_pl.reset()
+        left_pl.update_l()
+        right_pl.update_r()
         
 
         
