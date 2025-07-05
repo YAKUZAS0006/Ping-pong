@@ -30,6 +30,7 @@ class Player(GameSprite):
 
 left_pl = Player('dog.png',0,225,5,60,50)
 right_pl = Player('dog.png',640,225,5,60,50)
+ball = GameSprite('pea.png',350,250,3,30,30)
 
 
 
@@ -68,8 +69,12 @@ while game:
         window.blit(background,(0,0))
         left_pl.reset()
         right_pl.reset()
+        ball.reset()
         left_pl.update_l()
         right_pl.update_r()
+        ball.rect.x += ball.speed
+        ball.rect.y += ball.speed
+
         
 
         
