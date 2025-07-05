@@ -30,9 +30,10 @@ class Player(GameSprite):
 
 left_pl = Player('dog.png',0,225,5,60,50)
 right_pl = Player('dog.png',640,225,5,60,50)
-ball = GameSprite('pea.png',350,250,3,30,30)
+ball = GameSprite('pea.png',321,203,3,30,30)
 
-
+speed_x = 3
+speed_y = 3
 
 
 
@@ -72,8 +73,14 @@ while game:
         ball.reset()
         left_pl.update_l()
         right_pl.update_r()
-        ball.rect.x += ball.speed
-        ball.rect.y += ball.speed
+        if ball.rect.y >= 470:
+            speed_y *= -1
+        if ball.rect.y <= 0:
+            speed_y *= -1
+        if sprite.collide_rect(left_pl,ball) or sprite.collide_rect(right_pl,ball):
+            speed_x *= -1
+        ball.rect.x += speed_x
+        ball.rect.y += speed_y
 
         
 
