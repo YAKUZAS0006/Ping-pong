@@ -56,8 +56,8 @@ FPS = 60
 # peashooter = Player('peashooter.png',100,400,10,50,50)
 font.init()
 font1 = font.SysFont('Arial',70)
-win = font1.render('YOU WIN',True,(255,215,0))
-lose = font1.render('YOU LOSE',True,(255,10,10))
+win_l = font1.render('WIN LEFT PLAYER',True,(255,215,0))
+win_r = font1.render('WIN RIGHT PLAYER',True,(255,215,0))
 while game:
     for e in event.get():
         if e.type == QUIT:
@@ -79,6 +79,11 @@ while game:
             speed_y *= -1
         if sprite.collide_rect(left_pl,ball) or sprite.collide_rect(right_pl,ball):
             speed_x *= -1
+        if ball.rect.x >= 670:
+            window.blit(win_l,(100,200))
+        if ball.rect.x <= 0:
+            window.blit(win_r,(100,200))
+
         ball.rect.x += speed_x
         ball.rect.y += speed_y
 
